@@ -1,6 +1,6 @@
 // Task 3: Create a mini calculator
 
-use std::io::{stdout, Write, stdin};
+use std::io::{stdin, stdout, Write};
 
 enum Operation {
     Add,
@@ -15,7 +15,6 @@ impl Operation {
             Self::Subtract => x - y,
             Self::Multiply => x * y,
             Self::Devide => x / y,
-
         }
     }
 }
@@ -31,7 +30,9 @@ fn get_user_input(question: &str) -> String {
     let _ = stdout().flush();
 
     //Read user input
-    stdin().read_line(&mut return_value).expect("failed to provide string!");
+    stdin()
+        .read_line(&mut return_value)
+        .expect("failed to provide string!");
 
     //Remove newline characters
     if let Some('\n') = return_value.chars().next_back() {
@@ -43,15 +44,18 @@ fn get_user_input(question: &str) -> String {
         return_value.pop();
     }
 
-    return return_value;
+    return_value
 }
 
-pub fn run(){
-
-    let user_num1: i32 = get_user_input("First number for calculator").parse::<i32>().unwrap_or(0);
+pub fn run() {
+    let user_num1: i32 = get_user_input("First number for calculator")
+        .parse::<i32>()
+        .unwrap_or(0);
     let user_operation = get_user_input("Operator for calculator");
-    let user_num2: i32 = get_user_input("Last number for calculator").parse::<i32>().unwrap_or(0);
-    
+    let user_num2: i32 = get_user_input("Last number for calculator")
+        .parse::<i32>()
+        .unwrap_or(0);
+
     //Convert string to operator
     let operation = match user_operation.as_str() {
         "+" => Operation::Add,
@@ -62,7 +66,10 @@ pub fn run(){
     };
 
     //Run Calculation
-    let result = operation.calculate(user_num1, user_num2); 
+    let result = operation.calculate(user_num1, user_num2);
 
-    println!("{}", format!("{user_num1} {user_operation} {user_num2} = {result}"))
+    println!(
+        "{} {} {} = {}",
+        user_num1, user_operation, user_num2, result
+    )
 }
