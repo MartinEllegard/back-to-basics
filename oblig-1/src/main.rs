@@ -7,7 +7,7 @@ mod task5;
 fn main() {
     println!("Task 1:");
     task1::run();
-    
+
     println!("Task 2:");
     task2::run();
 
@@ -15,8 +15,8 @@ fn main() {
     task3::run();
 
     println!("Task 4:");
-    task2::run();
+    task4::run();
 
     println!("Task 5:");
-    task3::run();
+    task5::run();
 }
